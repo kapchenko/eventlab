@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+        logicalFilePath="changelog-0.1.2.xml">
+
+    <changeSet id="1" author="postgres">
+        <insert tableName="event">
+            <column name="id"
+                    value="4"/>
+            <column name="name"
+                    value="ROCK CONCERT"/>
+            <column name="date"
+                    value="2018-06-18"/>
+            <column name="org_id"
+                    value="3"/>
+        </insert>
+        <rollback>
+            <delete tableName="event">
+                <where>id=4</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="tag" author="postgres">
+        <tagDatabase tag="v0.1.2"/>
+    </changeSet>
+
+</databaseChangeLog>

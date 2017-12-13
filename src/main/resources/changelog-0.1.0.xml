@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+        logicalFilePath="changelog-0.1.0.xml">
+
+    <changeSet id="clear" author="postgres">
+        <tagDatabase tag="v0"/>
+    </changeSet>
+
+    <changeSet id="1" author="postgres">
+        <createTable tableName="organisators">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name = "phone" type ="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName = "organisators" cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="postgres">
+        <createTable tableName="event">
+            <column name="id" type="int" >
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false" />
+            </column>
+            <column name="date" type="DATE">
+            <constraints nullable="false"/>
+            </column>
+            <column name = "org_id" type = "int">
+                    <constraints nullable="false" foreignKeyName="fk_org_id" references="organisators(id)"/>
+            </column>
+        </createTable>
+        <rollback>
+        <dropTable tableName = "event" cascadeConstraints="true"/>
+    </rollback>
+    </changeSet>
+
+
+
+    <changeSet id="3" author="postgres">
+        <createTable tableName="price">
+            <column name="ev_id" type = "int">
+                <constraints nullable="false" foreignKeyName="fk_ev_id" references="event(id)"/>
+            </column>
+            <column name="ticketprice" type ="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName = "price" cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="4" author="postgres">
+        <createTable tableName="participant">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName = "participant" cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="5" author="postgres">
+        <createTable tableName="event_participant">
+            <column name="ev_id" type = "int">
+                <constraints nullable="false" foreignKeyName="fk_ev_id" references="event(id)"/>
+            </column>
+            <column name="particip_id" type ="int">
+                <constraints nullable="false" foreignKeyName="fk_particip_id" references="participant(id)"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName = "event_participant" cascadeConstraints="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="tag" author="postgres">
+        <tagDatabase tag="v0.1.0"/>
+    </changeSet>
+
+</databaseChangeLog>

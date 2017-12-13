@@ -1,0 +1,41 @@
+language: java
+
+services:
+  - postgresql
+
+jdk:
+- openjdk8
+
+env:
+- TERM=dumb
+
+
+
+install:
+  - gradle assemble
+
+before_script:
+  - psql -c 'create database taxidb;' -U postgres
+
+addons:
+  postgresql: "9.6"
+
+before_install:
+  - sudo apt-get install jq
+  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+
+after_success:
+  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+
+env:
+    - CODACY_PROJECT_TOKEN=9d14788870c6405dad2da4fdddc17635
+script:
+  - gradle check
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+        logicalFilePath="changelog-0.1.7.xml">
+
+
+    <changeSet id="1" author="postgres">
+        <addColumn tableName="event">
+            <column name="org_name" type="varchar(30)"/>
+        </addColumn>
+        <addColumn tableName="event">
+            <column name="org_phone_num" type="varchar(10)"/>
+        </addColumn>
+        <sql>UPDATE event SET org_name = organisators.name, org_phone_num = organisators.tel_number FROM organisators WHERE event.org_id = organisators.id;</sql>
+        <dropColumn tableName="event" columnName="org_name" />
+        <dropTable tableName="event" cascadeConstraints="true"/>
+
+        <rollback>
+            <addColumn tableName="event">
+                <column name="orgId" type="int"/>
+            </addColumn>
+            <dropColumn tableName="event" columnName="org_name" />
+            <dropColumn tableName="event" columnName="org_phone_num" />
+
+            <createTable tableName="event">
+                <column name="id" type="int" >
+                    <constraints primaryKey="true" nullable="false" unique="true"/>
+                </column>
+                <column name="name" type="TEXT">
+                    <constraints nullable="false" />
+                </column>
+                <column name="date" type="DATE">
+                    <constraints nullable="false"/>
+                </column>
+                <column name = "org_id" type = "int">
+                    <constraints nullable="false" foreignKeyName="fk_orgId" references="organisators(id)"/>
+                </column>
+            </createTable>
+            <insert tableName="event">
+                <column name="id"
+                        value="1"/>
+                <column name="name"
+                        value="Atlas Weekend"/>
+                <column name="date"
+                        value="2018-06-18"/>
+                <column name="org_id"
+                        value="3"/>
+            </insert>
+            <insert tableName="event">
+                <column name="id"
+                        value="2"/>
+                <column name="name"
+                        value="Salat party"/>
+                <column name="date"
+                        value="2014-10-17"/>
+                <column name="org_id"
+                        value="2"/>
+            </insert>
+            <insert tableName="event">
+                <column name="id"
+                        value="3"/>
+                <column name="name"
+                        value="Piano concert"/>
+                <column name="date"
+                        value="2017-12-17"/>
+                <column name="org_id"
+                        value="1"/>
+
+            </insert>
+
+            <update tableName="event">
+                <column name="name"
+                        value="Atlas Weekend"/>
+                <where>id=1</where>
+            </update>
+            <update tableName="event">
+                <column name="name"
+                        value="Salat party"/>
+                <where>id=2</where>
+            </update>
+            <update tableName="event">
+                <column name="name"
+                        value="Piano concert"/>
+                <where>id=3</where>
+            </update>
+
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="tag" author="postgres">
+        <tagDatabase tag="v0.1.7"/>
+    </changeSet>
+
+</databaseChangeLog>

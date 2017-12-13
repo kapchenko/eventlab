@@ -1,0 +1,201 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+        logicalFilePath="changelog-0.1.1.xml">
+
+    <changeSet id="1" author="postgres">
+        <insert tableName="organisators">
+            <column name="id"
+                    value="1"/>
+            <column name="name"
+                    value="ART"/>
+            <column name = "phone"
+                    value="1111111111"/>
+        </insert>
+
+        <insert tableName="organisators">
+            <column name="id"
+                    value="2"/>
+            <column name="name"
+                    value="Party Ltd."/>
+            <column name = "phone"
+                    value="2222222222"/>
+        </insert>
+
+        <insert tableName="organisators">
+            <column name="id"
+                    value="3"/>
+            <column name="name"
+                    value="Atlas"/>
+            <column name = "phone"
+                    value="3333333333"/>
+        </insert>
+        <rollback>
+            <delete tableName="organisators">
+                <where>id=1</where>
+            </delete>
+            <delete tableName="organisators">
+                <where>id=2</where>
+            </delete>
+            <delete tableName="organisators">
+                <where>id=3</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2" author="postgres">
+        <insert tableName="event">
+            <column name="id"
+                    value="1"/>
+            <column name="name"
+                    value="Atlas Weekend"/>
+            <column name="date"
+                    value="2018-06-18"/>
+            <column name="org_id"
+                    value="3"/>
+        </insert>
+        <insert tableName="event">
+            <column name="id"
+                    value="2"/>
+            <column name="name"
+                    value="Salat party"/>
+            <column name="date"
+                    value="2014-10-17"/>
+            <column name="org_id"
+                    value="2"/>
+        </insert>
+        <insert tableName="event">
+            <column name="id"
+                    value="3"/>
+            <column name="name"
+                    value="Piano concert"/>
+            <column name="date"
+                    value="2017-12-17"/>
+            <column name="org_id"
+                    value="1"/>
+
+        </insert>
+
+
+        <rollback>
+            <delete tableName="event">
+                <where>id=1</where>
+            </delete>
+            <delete tableName="event">
+                <where>id=2</where>
+            </delete>
+            <delete tableName="event">
+                <where>id=3</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+
+
+    <changeSet id="3" author="postgres">
+        <insert tableName="price">
+            <column name="ev_id"
+                    value = "3"/>
+            <column name = "ticketprice"
+                     value = "300"/>
+        </insert>
+        <insert tableName = "price">
+            <column name = "ev_id"
+                   value = "1"/>
+            <column name="ticketprice"
+                    value = "100"/>
+        </insert>
+        <insert tableName="price">
+            <column name="ev_id"
+                    value = "2"/>
+            <column name="ticketprice"
+                    value = "200"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="price">
+                <where>id=1</where>
+            </delete>
+            <delete tableName="price">
+                <where>id=2</where>
+            </delete>
+            <delete tableName="price">
+                <where>id=3</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="4" author="postgres">
+        <insert tableName="participant">
+                <column name = "id"
+                        value ="1"/>
+                <column name="name"
+                        value = "Ludovico Einaudi"/>
+        </insert>
+        <insert tableName="participant">
+            <column name="id"
+                    value = "2"/>
+            <column name="name"
+                    value = "Kasabian"/>
+        </insert>
+        <insert tableName="participant">
+            <column name="id"
+                    value="3"/>
+            <column name = "name"
+                    value = "Prodigy"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="participant">
+                <where>id=1</where>
+            </delete>
+            <delete tableName="participant">
+                <where>id=2</where>
+            </delete>
+            <delete tableName="participant">
+                <where>id=3</where>
+            </delete>
+        </rollback>
+        
+    </changeSet>
+
+    <changeSet id="5" author="postgres">
+        <insert tableName="event_participant">
+            <column name="particip_id"
+                    value = "1"/>
+            <column name="ev_id"
+                    value ="3"/>
+        </insert>
+        <insert tableName="event_participant">
+            <column name="particip_id"
+                    value ="2"/>
+            <column name="ev_id"
+                    value ="1"/>
+        </insert>
+        <insert tableName="event_participant">
+            <column name="particip_id"
+                    value="3"/>
+            <column name="ev_id"
+                    value ="1"/>
+        </insert>
+        <rollback>
+            <delete tableName="event_participant">
+                <where>id=1</where>
+            </delete>
+            <delete tableName="event_participant">
+                <where>id=2</where>
+            </delete>
+            <delete tableName="event_participant">
+                <where>id=3</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="tag" author="postgres">
+        <tagDatabase tag="v0.1.1"/>
+    </changeSet>
+
+</databaseChangeLog>
