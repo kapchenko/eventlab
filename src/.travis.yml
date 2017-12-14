@@ -15,7 +15,7 @@ install:
   - gradle assemble
 
 before_script:
-  - psql -c 'create database taxidb;' -U postgres
+  - psql -c 'create database eventlaba3;' -U postgres
 
 addons:
   postgresql: "9.6"

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="309b2430-cb08-4866-8f0d-8cb199f270c8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/.travis.yml" afterPath="$PROJECT_DIR$/src/.travis.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -587,13 +587,14 @@
     <property name="settings.editor.splitter.proportion" value="0.2647059" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\All_java\Java_projects\EventLab\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\All_java\Java_projects\EventLab\src" />
       <recent name="D:\All_java\Java_projects\EventLab\src\main\java" />
       <recent name="D:\All_java\Java_projects\EventLab\src\main\resources" />
       <recent name="D:\All_java\Java_projects\EventLab" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\All_java\Java_projects\EventLab\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -720,12 +721,12 @@
       <workItem from="1513030467830" duration="1987000" />
       <workItem from="1513193850857" duration="6582000" />
       <workItem from="1513203923907" duration="27000" />
-      <workItem from="1513204523904" duration="755000" />
+      <workItem from="1513204523904" duration="1480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78182000" />
+    <option name="totallyTimeSpent" value="78907000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1105,8 +1106,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+        <state relative-caret-position="331">
+          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
           <folding />
         </state>
       </provider>
