@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class Connector {
     private static final String url_db="jdbc:postgresql://localhost:5432/eventlaba3";
     private static final String user ="postgres";
-    private static final String password="postgres";
+    private static final String password="";
 
     private static Connection connection =null;
 

@@ -22,7 +22,7 @@ public class LiquibaseUtil {
             Connection connection= DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/eventlaba3",
                     "postgres",
-                    "postgres"
+                    ""
             );
 
             Database db = DatabaseFactory.getInstance()
