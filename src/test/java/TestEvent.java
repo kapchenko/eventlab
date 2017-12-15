@@ -19,7 +19,7 @@ public class TestEvent {
 
     @Test
     public void TestEvents() {
-    Events executeEvents  = new Events(1,"Atlas Weekend",new java.sql.Date(18,6,18), 3);
+    Events executeEvents  = new Events(1,"Atlas Weekend",new java.sql.Date(2018,6,18), 3);
     Events testEvents = Events.getEvents(1);
     assertEquals(testEvents.toString(),executeEvents.toString());
     }

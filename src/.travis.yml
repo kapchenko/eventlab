@@ -10,7 +10,6 @@ env:
 - TERM=dumb
 
 
-
 install:
   - gradle assemble
 
